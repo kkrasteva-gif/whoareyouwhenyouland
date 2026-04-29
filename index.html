@@ -133,9 +133,9 @@ body { background: var(--white); color: var(--founders); font-family: 'Spectral'
         <path d="M10 5v5.5l3.5 2" stroke="#75bee9" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
     </div>
-    <div class="usd-wordmark">University of San Diego<small>International Center &middot; Study Abroad</small></div>
+    <div class="usd-wordmark">University of San Diego<small>International Center, Study Abroad</small></div>
   </div>
-  <span class="intro-kicker">Study Abroad &middot; Self-Assessment</span>
+  <span class="intro-kicker">Study Abroad, Self-Assessment</span>
   <h1 class="intro-title">Who Are<br>You When<br><span class="blue">You Land?</span></h1>
   <div class="intro-divider"></div>
   <p class="intro-body">Your upbringing shapes how you interact with new people, respond to unfamiliar situations, and engage with moments of uncertainty. These patterns do not suddenly change when you go abroad they show up in how you communicate, connect, and make decisions every day.</p>
@@ -156,7 +156,7 @@ body { background: var(--white); color: var(--founders); font-family: 'Spectral'
 <div class="screen" id="screen-quiz">
 <div class="quiz-wrap">
   <div class="quiz-top">
-    <span class="q-eyebrow" id="q-eyebrow">Section 1 &middot; The Core Variable</span>
+    <span class="q-eyebrow" id="q-eyebrow">Section 1, The Core Variable</span>
     <div class="q-section-title" id="q-section-title">Uncertainty</div>
     <div class="progress-row">
       <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
@@ -180,89 +180,21 @@ body { background: var(--white); color: var(--founders); font-family: 'Spectral'
 </div>
 <script>
 const SECTIONS=[
-  {eyebrow:'Section 1 \u00b7 The Core Variable',title:'Uncertainty',callout:'<strong>These questions are the heart of the quiz.</strong> How you respond to the unknown shapes everything else about your time abroad.'},
-  {eyebrow:'Section 2 \u00b7 Social Behavior',title:'How You Connect',callout:null},
-  {eyebrow:'Section 3 \u00b7 Independence',title:'Your Decision Making',callout:null},
-  {eyebrow:'Section 4 \u00b7 Engagement',title:'Seeking Out Difference',callout:null},
-];
+  {eyebrow:'Section 1 \u00b7 The Core Variable',title:'Uncertainty',callout:'<strong>These questions are the heart of the quiz.</strong> How you respond to the unknown shapes everything else about your time abroad.'}, {eyebrow:'Section 2 \u00b7 Social Behavior',title:'How You Connect',callout:null}, {eyebrow:'Section 3 \u00b7 Independence',title:'Your Decision Making',callout:null}, {eyebrow:'Section 4 \u00b7 Engagement',title:'Seeking Out Difference',callout:null}, ];
 
 const QUESTIONS=[
-  {sec:0,tag:'Scenario',text:'When things are uncertain and you don\'t fully understand what\'s going on in a situation, you\u2026',
-   opts:[{l:'A',t:'Jump in and figure it out as you go',s:[1,0,0,2]},{l:'B',t:'Try, but stay somewhat cautious',s:[1,1,0,1]},{l:'C',t:'Wait until you feel more comfortable',s:[0,1,1,0]},{l:'D',t:'Avoid the situation if possible',s:[0,0,2,0]}]},
-  {sec:0,tag:'Scenario',text:'You\'re in a situation where you might say or do the \u201cwrong\u201d thing. You\u2026',
-   opts:[{l:'A',t:'Go for it anyway and adjust if needed',s:[1,0,0,2]},{l:'B',t:'Try if it feels low-risk',s:[1,1,0,1]},{l:'C',t:'Let someone else take the lead',s:[0,2,1,0]},{l:'D',t:'Avoid speaking or acting altogether',s:[0,0,2,0]}]},
-  {sec:1,tag:'Social Situation',text:'When you\'re in a group where you don\'t know many people, you usually\u2026',
-   opts:[{l:'A',t:'Start conversations with new people',s:[0,0,0,2]},{l:'B',t:'Talk to a few new people but stay near someone familiar',s:[1,1,0,1]},{l:'C',t:'Stick with the one or two people you already know',s:[1,2,0,0]},{l:'D',t:'Keep to yourself',s:[0,0,2,0]}]},
-  {sec:1,tag:'Social Situation',text:'When you feel uncomfortable or out of place in a given environment, you\u2026',
-   opts:[{l:'A',t:'Push yourself to engage anyway',s:[1,0,0,2]},{l:'B',t:'Balance reaching out and leaning on familiar people',s:[1,1,0,0]},{l:'C',t:'Turn to people you already know',s:[0,2,1,0]},{l:'D',t:'Withdraw from the situation',s:[0,0,2,0]}]},
-  {sec:2,tag:'Decision',text:'When you have to make a decision without input from others, you\u2026',
-   opts:[{l:'A',t:'Decide quickly and act on it',s:[2,0,0,2]},{l:'B',t:'Think it through, then decide on your own',s:[2,0,0,1]},{l:'C',t:'Prefer to check with someone first',s:[0,2,1,0]},{l:'D',t:'Avoid deciding unless necessary',s:[0,0,2,0]}]},
-  {sec:2,tag:'Decision',text:'You\'re deciding whether to try something new. You\u2026',
-   opts:[{l:'A',t:'Decide and go for it',s:[2,0,0,2]},{l:'B',t:'Ask for input but ultimately make your own choice',s:[1,1,0,1]},{l:'C',t:'Wait for someone to accompany you',s:[0,2,1,0]},{l:'D',t:'Don\'t act unless someone else initiates',s:[0,1,2,0]}]},
-  {sec:3,tag:'New Environment',text:'You walk into an environment you\'ve never been before. You\u2026',
-   opts:[{l:'A',t:'Introduce yourself or start a conversation',s:[0,0,0,2]},{l:'B',t:'Observe first, then gradually engage',s:[1,1,0,1]},{l:'C',t:'Stay quiet unless someone approaches you',s:[1,2,0,0]},{l:'D',t:'Avoid interaction and leave if possible',s:[0,0,2,0]}]},
-  {sec:3,tag:'Self-Reflection',text:'Which statement feels most like you?',
-   opts:[{l:'A',t:'I actively look for new experiences, even if they\'re uncomfortable',s:[0,0,0,3]},{l:'B',t:'I like new experiences, but only when I feel somewhat prepared',s:[2,1,0,0]},{l:'C',t:'I prefer familiar environments and routines',s:[0,2,1,0]},{l:'D',t:'I avoid situations where I don\'t know what to expect',s:[0,0,3,0]}]},
-];
+  {sec:0,tag:'Scenario',text:'When things are uncertain and you don\'t fully understand what\'s going on in a situation, you\u2026', opts:[{l:'A',t:'Jump in and figure it out as you go',s:[1,0,0,2]},{l:'B',t:'Try, but stay somewhat cautious',s:[1,1,0,1]},{l:'C',t:'Wait until you feel more comfortable',s:[0,1,1,0]},{l:'D',t:'Avoid the situation if possible',s:[0,0,2,0]}]}, {sec:0,tag:'Scenario',text:'You\'re in a situation where you might say or do the \u201cwrong\u201d thing. You\u2026', opts:[{l:'A',t:'Go for it anyway and adjust if needed',s:[1,0,0,2]},{l:'B',t:'Try if it feels low-risk',s:[1,1,0,1]},{l:'C',t:'Let someone else take the lead',s:[0,2,1,0]},{l:'D',t:'Avoid speaking or acting altogether',s:[0,0,2,0]}]}, {sec:1,tag:'Social Situation',text:'When you\'re in a group where you don\'t know many people, you usually\u2026', opts:[{l:'A',t:'Start conversations with new people',s:[0,0,0,2]},{l:'B',t:'Talk to a few new people but stay near someone familiar',s:[1,1,0,1]},{l:'C',t:'Stick with the one or two people you already know',s:[1,2,0,0]},{l:'D',t:'Keep to yourself',s:[0,0,2,0]}]}, {sec:1,tag:'Social Situation',text:'When you feel uncomfortable or out of place in a given environment, you\u2026', opts:[{l:'A',t:'Push yourself to engage anyway',s:[1,0,0,2]},{l:'B',t:'Balance reaching out and leaning on familiar people',s:[1,1,0,0]},{l:'C',t:'Turn to people you already know',s:[0,2,1,0]},{l:'D',t:'Withdraw from the situation',s:[0,0,2,0]}]}, {sec:2,tag:'Decision',text:'When you have to make a decision without input from others, you\u2026', opts:[{l:'A',t:'Decide quickly and act on it',s:[2,0,0,2]},{l:'B',t:'Think it through, then decide on your own',s:[2,0,0,1]},{l:'C',t:'Prefer to check with someone first',s:[0,2,1,0]},{l:'D',t:'Avoid deciding unless necessary',s:[0,0,2,0]}]}, {sec:2,tag:'Decision',text:'You\'re deciding whether to try something new. You\u2026', opts:[{l:'A',t:'Decide and go for it',s:[2,0,0,2]},{l:'B',t:'Ask for input but ultimately make your own choice',s:[1,1,0,1]},{l:'C',t:'Wait for someone to accompany you',s:[0,2,1,0]},{l:'D',t:'Don\'t act unless someone else initiates',s:[0,1,2,0]}]}, {sec:3,tag:'New Environment',text:'You walk into an environment you\'ve never been before. You\u2026', opts:[{l:'A',t:'Introduce yourself or start a conversation',s:[0,0,0,2]},{l:'B',t:'Observe first, then gradually engage',s:[1,1,0,1]},{l:'C',t:'Stay quiet unless someone approaches you',s:[1,2,0,0]},{l:'D',t:'Avoid interaction and leave if possible',s:[0,0,2,0]}]}, {sec:3,tag:'Self-Reflection',text:'Which statement feels most like you?', opts:[{l:'A',t:'I actively look for new experiences, even if they\'re uncomfortable',s:[0,0,0,3]},{l:'B',t:'I like new experiences, but only when I feel somewhat prepared',s:[2,1,0,0]},{l:'C',t:'I prefer familiar environments and routines',s:[0,2,1,0]},{l:'D',t:'I avoid situations where I don\'t know what to expect',s:[0,0,3,0]}]}, ];
 
 const TYPES=[
-  {name:'Independent,\nbut In-Group Oriented',
-   tagline:'You\'re confident and capable, but you\'re drawn back to familiar networks for comfort. You have all the tools to resist this tendency. You just need to use them.',
-   risk:'You won\'t push yourself past your existing social circle, even though you have the confidence to do so.',
-   heading:'Recommended Ways to Challenge Yourself Abroad',
-   strategies:[
-     {t:'Spend one day a week without your friends',d:'Not as punishment, but as practice. Discover your full potential and what you are capable of on your own.'},
-     {t:'Initiate one conversation per day with a local',d:'A coffee order counts. A question about directions counts. The habit matters more than the depth. At least at first.'},
-     {t:'Put yourself in spaces where English isn\'t the default',d:'A local market, a neighborhood gym, a community event. Let yourself be the outsider and take it all in.'},
-   ],
-   push:'Expand your circle while retaining your independence.',
-   research:[
-     'Your pattern reflects a central tension in how people navigate unfamiliar environments. There is a pull toward familiar social groups, despite the fact that you have the confidence and ability to move beyond them. This is deeply connected to how identity functions in new settings. You carry your sense of self into every interaction abroad, and familiar groups offer a way to maintain that sense of self without having to renegotiate it.',
-     'What holds you back isn\'t capability. It\'s your tolerance for social uncertainty. Research on how individuals communicate in unfamiliar environments shows that people avoid unpredictable interactions not because they can\'t handle them, but because familiar relationships reduce ambiguity and feel safer. For you, growth depends less on building new skills and more on your willingness to take a risk and enter unfamiliar social situations.',
-   ]},
-  {name:'Relational &\nIn-Group Anchored',
-   tagline:'You thrive in connection and lean on your familiar people to navigate the unknown. You find strength in your in-group, but it can quickly become a buffer between you and potential new groups.',
-   risk:'You stay socially comfortable, but culturally limited. Your experience abroad can mirror home if you let it.',
-   heading:'Recommended Ways to Challenge Yourself Abroad',
-   strategies:[
-     {t:'Use your group as a base, not a boundary',d:'Return to them for comfort, but challenge yourself to push outward first. They will be there when you get back.'},
-     {t:'Talk to one new person every time you go out',d:'It doesn\'t have to be deep. Just one exchange outside of your usual circle. You never know where it could lead.'},
-     {t:'Build one recurring local interaction',d:'A caf\u00e9 you return to, a gym you join, a fruit stand at the farmer\'s market. Repetition builds real connection and deeper cultural immersion.'},
-   ],
-   push:'Expand your circle and meet new people.',
-   research:[
-     'Your tendency to rely on close relationships in unfamiliar settings is one of the most documented responses to being abroad. When everything else feels uncertain. The language, the norms, the social cues. Turning to familiar people is a natural way to reduce that uncertainty and maintain a stable sense of who you are.',
-     'The challenge is that while in-group connections provide emotional stability, they can also limit your exposure to difference when they become a barrier rather than a foundation. Research on intercultural engagement shows that meaningful cultural understanding develops through sustained contact with people outside of your existing social circle. The students who grow the most abroad are those who use their close relationships for support, while still choosing to step into new, uncomfortable social territory.',
-   ]},
-  {name:'Developing\nIndependence',
-   tagline:'You may feel uncertain at first. That\'s a starting marker, not a flaw. You have substantial capacity for growth, and going abroad is the perfect environment to unlock it.',
-   risk:'Initial fear can limit your early experiences. The first moments set the tone and hesitation can compound.',
-   heading:'Recommended Ways to Challenge Yourself Abroad',
-   strategies:[
-     {t:'Do one thing alone every day',d:'Walk somewhere new, eat at a caf\u00e9 by yourself, explore a neighborhood without a plan. Small acts of independence accumulate.'},
-     {t:'Don\'t wait until you feel ready. Act first',d:'The feeling of readiness usually doesn\'t come \u201cin time,\u201d especially while abroad. Challenge yourself to move anyway.'},
-     {t:'Say yes before you can overthink it',d:'You\'ll talk yourself out of things. The override is to commit before your brain catches up. Do it for your own good.'},
-   ],
-   push:'Trust yourself and lean into the discomfort of abroad.',
-   research:[
-     'Your experience emphasizes something important: uncertainty tolerance is not fixed. The discomfort you feel in unfamiliar situations is not a permanent trait. It\'s a response shaped by your early socialization and prior experiences. Moments of discomfort, miscommunication, and cultural difference are not obstacles to growth; when engaged with rather than avoided, they are the primary drivers of it.',
-     'Studies consistently show that students who move through uncertainty, rather than waiting for it to pass, develop greater adaptability, confidence, and cultural understanding over time. Your trajectory is defined by whether you choose to engage with uncertainty when you are faced with it. That choice, repeated often, is what transforms an abroad experience from something that just happens to you into something that fundamentally changes you.',
-   ]},
-  {name:'Independent &\nOut-Group Engaged',
-   tagline:'You actively seek new experiences and approach uncertainty with confidence. Now make sure it actually lands.',
-   risk:'Burnout or surface-level overextension. Collecting experiences without truly absorbing them.',
-   heading:'Recommended Ways to Challenge Yourself Abroad',
-   strategies:[
-     {t:'Focus on depth over breadth',d:'Pick one or two people and work to develop a deep and genuine connection with them. Five surface-level friendships is not the same as one true one.'},
-     {t:'Reflect, don\'t just experience',d:'Journal, voice memo, whatever works. Your experiences best become yours when you process them.'},
-     {t:'Stay present, not just busy',d:'Are you doing things because you want to, or because you can\'t slow down? Sit in one place long enough to notice it.'},
-   ],
-   push:'Turn activity into meaning.',
-   research:[
-     'Your high tolerance for uncertainty is one of the strongest predictors of intercultural engagement. Rather than avoiding ambiguity, you reduce it through interaction. Seeking out new people and environments rather than waiting for them to feel safe. This approach is directly linked to deeper cultural understanding and personal growth in research on study abroad outcomes.',
-     'Your main challenge isn\'t access to experience. It\'s what you take away from it. Research on intercultural development shows that reflection produces much stronger growth than exposure alone. Students who engage widely but rarely slow down often return from abroad with vivid memories, but without the deeper shifts in perspective that make study abroad genuinely formative. The challenge for you is to slow down and make moments intentional.',
-   ]},
-];
+  {name:'Independent,\nbut In-Group Oriented', tagline:'You\'re confident and capable, but you\'re drawn back to familiar networks for comfort. You have all the tools to resist this tendency. You just need to use them.', risk:'You won\'t push yourself past your existing social circle, even though you have the confidence to do so.', heading:'Recommended Ways to Challenge Yourself Abroad', strategies:[
+     {t:'Spend one day a week without your friends',d:'Not as punishment, but as practice. Discover your full potential and what you are capable of on your own.'}, {t:'Initiate one conversation per day with a local',d:'A coffee order counts. A question about directions counts. The habit matters more than the depth. At least at first.'}, {t:'Put yourself in spaces where English isn\'t the default',d:'A local market, a neighborhood gym, a community event. Let yourself be the outsider and take it all in.'}, ], push:'Expand your circle while retaining your independence.', research:[
+     'Your pattern reflects a central tension in how people navigate unfamiliar environments. There is a pull toward familiar social groups, despite the fact that you have the confidence and ability to move beyond them. This is deeply connected to how identity functions in new settings. You carry your sense of self into every interaction abroad, and familiar groups offer a way to maintain that sense of self without having to renegotiate it.', 'What holds you back isn\'t capability. It\'s your tolerance for social uncertainty. Research on how individuals communicate in unfamiliar environments shows that people avoid unpredictable interactions not because they can\'t handle them, but because familiar relationships reduce ambiguity and feel safer. For you, growth depends less on building new skills and more on your willingness to take a risk and enter unfamiliar social situations.', ]}, {name:'Relational &\nIn-Group Anchored', tagline:'You thrive in connection and lean on your familiar people to navigate the unknown. You find strength in your in-group, but it can quickly become a buffer between you and potential new groups.', risk:'You stay socially comfortable, but culturally limited. Your experience abroad can mirror home if you let it.', heading:'Recommended Ways to Challenge Yourself Abroad', strategies:[
+     {t:'Use your group as a base, not a boundary',d:'Return to them for comfort, but challenge yourself to push outward first. They will be there when you get back.'}, {t:'Talk to one new person every time you go out',d:'It doesn\'t have to be deep. Just one exchange outside of your usual circle. You never know where it could lead.'}, {t:'Build one recurring local interaction',d:'A caf\u00e9 you return to, a gym you join, a fruit stand at the farmer\'s market. Repetition builds real connection and deeper cultural immersion.'}, ], push:'Expand your circle and meet new people.', research:[
+     'Your tendency to rely on close relationships in unfamiliar settings is one of the most documented responses to being abroad. When everything else feels uncertain. The language, the norms, the social cues. Turning to familiar people is a natural way to reduce that uncertainty and maintain a stable sense of who you are.', 'The challenge is that while in-group connections provide emotional stability, they can also limit your exposure to difference when they become a barrier rather than a foundation. Research on intercultural engagement shows that meaningful cultural understanding develops through sustained contact with people outside of your existing social circle. The students who grow the most abroad are those who use their close relationships for support, while still choosing to step into new, uncomfortable social territory.', ]}, {name:'Developing\nIndependence', tagline:'You may feel uncertain at first. That\'s a starting marker, not a flaw. You have substantial capacity for growth, and going abroad is the perfect environment to unlock it.', risk:'Initial fear can limit your early experiences. The first moments set the tone and hesitation can compound.', heading:'Recommended Ways to Challenge Yourself Abroad', strategies:[
+     {t:'Do one thing alone every day',d:'Walk somewhere new, eat at a caf\u00e9 by yourself, explore a neighborhood without a plan. Small acts of independence accumulate.'}, {t:'Don\'t wait until you feel ready. Act first',d:'The feeling of readiness usually doesn\'t come \u201cin time,\u201d especially while abroad. Challenge yourself to move anyway.'}, {t:'Say yes before you can overthink it',d:'You\'ll talk yourself out of things. The override is to commit before your brain catches up. Do it for your own good.'}, ], push:'Trust yourself and lean into the discomfort of abroad.', research:[
+     'Your experience emphasizes something important: uncertainty tolerance is not fixed. The discomfort you feel in unfamiliar situations is not a permanent trait. It\'s a response shaped by your early socialization and prior experiences. Moments of discomfort, miscommunication, and cultural difference are not obstacles to growth; when engaged with rather than avoided, they are the primary drivers of it.', 'Studies consistently show that students who move through uncertainty, rather than waiting for it to pass, develop greater adaptability, confidence, and cultural understanding over time. Your trajectory is defined by whether you choose to engage with uncertainty when you are faced with it. That choice, repeated often, is what transforms an abroad experience from something that just happens to you into something that fundamentally changes you.', ]}, {name:'Independent &\nOut-Group Engaged', tagline:'You actively seek new experiences and approach uncertainty with confidence. Now make sure it actually lands.', risk:'Burnout or surface-level overextension. Collecting experiences without truly absorbing them.', heading:'Recommended Ways to Challenge Yourself Abroad', strategies:[
+     {t:'Focus on depth over breadth',d:'Pick one or two people and work to develop a deep and genuine connection with them. Five surface-level friendships is not the same as one true one.'}, {t:'Reflect, don\'t just experience',d:'Journal, voice memo, whatever works. Your experiences best become yours when you process them.'}, {t:'Stay present, not just busy',d:'Are you doing things because you want to, or because you can\'t slow down? Sit in one place long enough to notice it.'}, ], push:'Turn activity into meaning.', research:[
+     'Your high tolerance for uncertainty is one of the strongest predictors of intercultural engagement. Rather than avoiding ambiguity, you reduce it through interaction. Seeking out new people and environments rather than waiting for them to feel safe. This approach is directly linked to deeper cultural understanding and personal growth in research on study abroad outcomes.', 'Your main challenge isn\'t access to experience. It\'s what you take away from it. Research on intercultural development shows that reflection produces much stronger growth than exposure alone. Students who engage widely but rarely slow down often return from abroad with vivid memories, but without the deeper shifts in perspective that make study abroad genuinely formative. The challenge for you is to slow down and make moments intentional.', ]}, ];
 
 let answers=new Array(QUESTIONS.length).fill(null),currentQ=0;
 
@@ -320,7 +252,7 @@ function showResults(){
   document.getElementById('screen-results').classList.add('active');
   const type=TYPES[getType()],pcts=getPcts();
   const scoreItems=[{label:'Uncertainty Tolerance',pct:pcts[0]},{label:'Social Openness',pct:pcts[1]},{label:'Independence',pct:pcts[2]},{label:'Engagement',pct:pcts[3]}];
-  let html='<div class="usd-bar"><div class="usd-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="#75bee9" stroke-width="1.5"/><path d="M10 5v5.5l3.5 2" stroke="#75bee9" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="usd-wordmark">University of San Diego<small>International Center &middot; Study Abroad</small></div></div>';
+  let html='<div class="usd-bar"><div class="usd-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="#75bee9" stroke-width="1.5"/><path d="M10 5v5.5l3.5 2" stroke="#75bee9" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="usd-wordmark">University of San Diego<small>International Center, Study Abroad</small></div></div>';
   html+='<div class="res-header"><span class="res-eyebrow">Your Traveler Type</span><div class="res-type">'+type.name.replace('\n','<br>')+'</div><p class="res-tagline">'+type.tagline+'</p></div>';
   html+='<div class="type-note"><p>Your result reflects how you typically respond to uncertainty, connection, and decision-making and where growth is most likely to happen. There is no \u201cbest\u201d type. Recognizing your patterns of adaptation can help you intentionally challenge them, in order to get the most fulfilling and well-rounded study abroad experience.</p></div>';
   html+='<div class="scores-grid">';
