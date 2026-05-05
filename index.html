@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Who Are You When You Land? | USD International Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:wght@600;700&family=Sofia+Sans:wght@400;500;600&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --founders:   #003b70;
+  --immaculata: #0074c8;
+  --torero:     #75bee9;
+  --white:      #ffffff;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--white); color: var(--founders); font-family: 'Spectral', Georgia, serif; min-height: 100vh; padding: 0 1.25rem 5rem; }
+.container { max-width: 660px; margin: 0 auto; }
+.screen { display: none; }
+.screen.active { display: block; }
+
+/* USD BAR */
+.usd-bar { display: flex; align-items: center; gap: 12px; padding: 1.25rem 0; border-bottom: 2.5px solid var(--founders); margin-bottom: 2.25rem; }
+.usd-icon { width: 38px; height: 38px; background: var(--founders); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.usd-wordmark { font-family: 'Sofia Sans Extra Condensed', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--founders); line-height: 1.2; }
+.usd-wordmark small { display: block; font-family: 'Sofia Sans', sans-serif; font-size: 10px; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--immaculata); margin-top: 1px; }
+
+/* INTRO */
+.intro-wrap { padding-top: 2rem; }
+.intro-kicker { font-family: 'Sofia Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--immaculata); display: block; margin-bottom: 1rem; }
+.intro-title { font-family: 'Sofia Sans Extra Condensed', sans-serif; font-size: clamp(46px,11vw,72px); font-weight: 700; text-transform: uppercase; line-height: 0.93; color: var(--founders); letter-spacing: 0.01em; }
+.intro-title .blue { color: var(--immaculata); }
+.intro-divider { width: 52px; height: 3px; background: var(--torero); margin: 1.75rem 0; }
+.intro-body { font-family: 'Spectral', Georgia, serif; font-size: 16px; line-height: 1.85; color: var(--founders); margin-bottom: 0.9rem; max-width: 530px; }
+.intro-body.secondary { font-size: 15px; color: var(--immaculata); }
+
+.stats-strip { display: flex; border: 1.5px solid var(--torero); border-radius: 4px; overflow: hidden; margin: 2rem 0 2.25rem; }
+.stat-cell { flex: 1; text-align: center; padding: 18px 10px; border-right: 1px solid var(--torero); }
+.stat-cell:last-child { border-right: none; }
+.stat-n { font-family: 'Sofia Sans Extra Condensed', sans-serif; font-size: 36px; font-weight: 700; color: var(--founders); line-height: 1; display: block; }
+.stat-l { font-family: 'Sofia Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--immaculata); display: block; margin-top: 4px; }
+
+.start-btn { display: inline-flex; align-items: center; gap: 12px; background: var(--founders); color: var(--white); font-family: 'Sofia Sans', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 15px 38px; border: none; border-radius: 3px; cursor: pointer; transition: background 0.2s, transform 0.15s; }
+.start-btn:hover { background: var(--immaculata); transform: translateY(-1px); }
+.start-btn:active { transform: translateY(0); }
+
+/* QUIZ */
+.quiz-wrap { padding-top: 2rem; }
+.quiz-top { padding-bottom: 1rem; border-bottom: 2.5px solid var(--founders); margin-bottom: 1.75rem; }
+.q-eyebrow { font-family: 'Sofia Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--immaculata); display: block; margin-bottom: 3px; }
+.q-section-title { font-family: 'Sofia Sans Extra Condensed', sans-serif; font-size: 28px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; color: var(--founders); line-height: 1; }
+.progress-row { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.prog-track { flex: 1; height: 3px; background: var(--torero); border-radius: 3px; overflow: hidden; }
+.prog-fill { height: 100%; background: var(--founders); border-radius: 3px; transition: width 0.5s cubic-bezier(.4,0,.2,1); }
+.prog-label { font-family: 'Sofia Sans', sans-serif; font-size: 11px; color: var(--immaculata); white-space: nowrap; letter-spacing: 0.04em; }
+
+.section-callout { background: var(--torero); border-left: 4px solid var(--founders); padding: 12px 16px; margin-bottom: 1.5rem; border-radius: 0 3px 3px 0; }
+.section-callout p { font-family: 'Sofia Sans', sans-serif; font-size: 13px; color: var(--founders); line-height: 1.6; }
+.section-callout strong { font-weight: 600; }
+
+.q-tag { font-family: 'Sofia Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--immaculata); display: block; margin-bottom: 8px; }
+.q-text { font-family: 'Spectral', Georgia, serif; font-size: 20px; font-weight: 600; line-height: 1.42; color: var(--founders); margin-bottom: 1.25rem; }
+
+.opts { display: flex; flex-direction: column; gap: 8px; }
+.opt { display: flex; align-items: flex-start; gap: 14px; background: var(--white); border: 1.5px solid var(--torero); border-radius: 3px; padding: 14px 16px; cursor: pointer; text-align: left; width: 100%; transition: border-color 0.14s, background 0.14s, transform 0.12s; }
+.opt:hover { border-color: var(--immaculata); background: #e8f4fc; }
+.opt.sel { background: var(--founders); border-color: var(--founders); transform: translateX(4px); }
+.opt-let { font-family: 'Sofia Sans Extra Condensed', sans-serif; font-size: 16px; font-weight: 700; color: var(--immaculata); flex-shrink: 0; width: 18px; margin-top: 1px; line-height: 1; text-transform: uppercase; }
+.opt.sel .opt-let { color: var(--torero); }
+.opt-txt { font-family: 'Spectral', Georgia, serif; font-size: 14px; line-height: 1.6; color: var(--founders); }
+.opt.sel .opt-txt { color: var(--white); }
+
+.nav-row { display: flex; gap: 10px; padding-top: 1.5rem; border-top: 1px solid var(--torero); margin-top: 0.5rem; }
+.nav-btn { flex: 1; padding: 13px; border: 1.5px solid var(--torero); background: var(--white); font-family: 'Sofia Sans', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--founders); cursor: pointer; border-radius: 3px; transition: all 0.15s; }
+.nav-btn:hover:not(:disabled) { border-color: var(--founders); background: var(--founders); color: var(--white); }
+.nav-btn.primary { background: var(--founders); color: var(--white); border-color: var(--founders); }
+.nav-btn.primary:hover:not(:disabled) { background: var(--immaculata); border-color: var(--immaculata); }
+.nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* RESULTS */
+.results-wrap { padding-top: 2rem; }
+.res-header { padding-bottom: 1.5rem; border-bottom: 2.5px solid var(--founders); margin-bottom: 1.75rem; }
+.res-eyebrow { font-family: 'Sofia Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--immaculata); display: block; margin-bottom: 0.5rem; }
+.res-type { font-family: 'Sofia Sans Extra Condensed', sans-serif; font-size: clamp(32px,8vw,50px); font-weight: 700; text-transform: uppercase; line-height: 1.0; letter-spacing: 0.01em; color: var(--founders); margin-bottom: 0.85rem; }
+.res-tagline { font-family: 'Spectral', Georgia, serif; font-size: 16px; line-height: 1.8; color: var(--immaculata); font-style: italic; }
+
+.type-note { background: var(--white); border: 1.5px solid var(--torero); border-top: 4px solid var(--immaculata); border-radius: 0 0 3px 3px; padding: 14px 16px; margin-bottom: 1.75rem; }
+.type-note p { font-family: 'Sofia Sans', sans-serif; font-size: 12px; color: var(--founders); line-height: 1.7; }
+
+.scores-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--torero); border: 1.5px solid var(--torero); border-radius: 4px; overflow: hidden; margin-bottom: 1.75rem; }
+.sc-cell { background: var(--white); padding: 14px 16px; }
+.sc-label { font-family: 'Sofia Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--immaculata); display: block; margin-bottom: 8px; }
+.sc-track { height: 3px; background: var(--torero); border-radius: 2px; margin-bottom: 6px; overflow: hidden; }
+.sc-fill { height: 100%; background: var(--immaculata); border-radius: 2px; transition: width 1.1s cubic-bezier(.4,0,.2,1); }
+.sc-val { font-family: 'Sofia Sans Extra Condensed', sans-serif; font-size: 28px; font-weight: 700; color: var(--founders); line-height: 1; }
+.sc-val sup { font-family: 'Sofia Sans', sans-serif; font-size: 14px; font-weight: 400; color: var(--immaculata); }
+
+.growth-block { border: 1.5px solid var(--torero); border-left: 4px solid var(--founders); background: var(--white); padding: 14px 16px; margin-bottom: 1.75rem; border-radius: 0 3px 3px 0; }
+.growth-lbl { font-family: 'Sofia Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--founders); display: block; margin-bottom: 5px; }
+.growth-txt { font-family: 'Spectral', Georgia, serif; font-size: 14px; line-height: 1.7; color: var(--founders); }
+
+.block-lbl { font-family: 'Sofia Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--immaculata); display: block; padding-bottom: 10px; border-bottom: 1px solid var(--torero); }
+.strat-row { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--torero); }
+.strat-row:last-child { border-bottom: none; }
+.strat-n { font-family: 'Sofia Sans Extra Condensed', sans-serif; font-size: 24px; font-weight: 700; color: var(--torero); flex-shrink: 0; width: 26px; padding-top: 1px; line-height: 1; }
+.strat-title { font-family: 'Sofia Sans', sans-serif; font-size: 14px; font-weight: 600; color: var(--founders); margin-bottom: 4px; }
+.strat-desc { font-family: 'Spectral', Georgia, serif; font-size: 13px; line-height: 1.75; color: var(--immaculata); }
+
+.core-effort { background: var(--founders); color: var(--white); padding: 1.5rem; border-radius: 3px; margin: 1.75rem 0; }
+.ce-lbl { font-family: 'Sofia Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--torero); display: block; margin-bottom: 8px; }
+.ce-text { font-family: 'Sofia Sans Extra Condensed', sans-serif; font-size: 28px; font-weight: 700; text-transform: uppercase; line-height: 1.2; letter-spacing: 0.02em; }
+
+.research-block { background: var(--white); border: 1.5px solid var(--torero); border-top: 4px solid var(--immaculata); border-radius: 0 0 3px 3px; padding: 1.5rem; margin-bottom: 2rem; }
+.rb-lbl { font-family: 'Sofia Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--immaculata); display: block; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--torero); }
+.rb-p { font-family: 'Spectral', Georgia, serif; font-size: 14px; line-height: 1.9; color: var(--founders); }
+.rb-p + .rb-p { margin-top: 0.9rem; }
+
+.res-footer { text-align: center; padding-top: 1rem; border-top: 1px solid var(--torero); }
+.res-footer p { font-family: 'Spectral', Georgia, serif; font-size: 13px; font-style: italic; color: var(--immaculata); line-height: 1.65; margin-bottom: 1.25rem; }
+.retry-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--white); border: 1.5px solid var(--torero); font-family: 'Sofia Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--founders); padding: 10px 24px; border-radius: 3px; cursor: pointer; transition: all 0.15s; }
+.retry-btn:hover { border-color: var(--founders); background: var(--founders); color: var(--white); }
+
+.citations-block { border: 1.5px solid var(--torero); border-top: 4px solid var(--founders); border-radius: 0 0 3px 3px; padding: 1.5rem; margin-bottom: 1.75rem; }
+.cit-lbl { font-family: 'Sofia Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--founders); display: block; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--torero); }
+.cit-p { font-family: 'Spectral', Georgia, serif; font-size: 12px; line-height: 1.8; color: var(--founders); margin-bottom: 0.75rem; }
+.cit-p:last-child { margin-bottom: 0; }
+.cit-p em { font-style: italic; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- INTRO -->
+<div class="screen active" id="screen-intro">
+<div class="intro-wrap">
+  <div class="usd-bar">
+    <div class="usd-icon">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <circle cx="10" cy="10" r="8" stroke="#75bee9" stroke-width="1.5"/>
+        <path d="M10 5v5.5l3.5 2" stroke="#75bee9" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="usd-wordmark">University of San Diego<small>International Center &middot; Study Abroad</small></div>
+  </div>
+  <span class="intro-kicker">Study Abroad &middot; Self-Assessment</span>
+  <h1 class="intro-title">Who Are<br>You When<br><span class="blue">You Land?</span></h1>
+  <div class="intro-divider"></div>
+  <p class="intro-body">Your upbringing shapes how you interact with new people, respond to unfamiliar situations, and engage with moments of uncertainty. These patterns do not suddenly change when you go abroad they show up in how you communicate, connect, and make decisions every day.</p>
+  <p class="intro-body secondary">This quiz helps you recognize those tendencies, so you can plan your time abroad with greater awareness and intention before you even arrive.</p>
+  <div class="stats-strip">
+    <div class="stat-cell"><span class="stat-n">9</span><span class="stat-l">Questions</span></div>
+    <div class="stat-cell"><span class="stat-n">4</span><span class="stat-l">Types</span></div>
+    <div class="stat-cell"><span class="stat-n">~3</span><span class="stat-l">Minutes</span></div>
+  </div>
+  <button class="start-btn" onclick="startQuiz()">
+    Begin the Quiz
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</div>
+</div>
+
+<!-- QUIZ -->
+<div class="screen" id="screen-quiz">
+<div class="quiz-wrap">
+  <div class="quiz-top">
+    <span class="q-eyebrow" id="q-eyebrow">Section 1 &middot; The Core Variable</span>
+    <div class="q-section-title" id="q-section-title">Uncertainty</div>
+    <div class="progress-row">
+      <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+      <span class="prog-label" id="prog-label">1 / 8</span>
+    </div>
+  </div>
+  <div id="callout-wrap"></div>
+  <div id="q-wrap"></div>
+  <div class="nav-row">
+    <button class="nav-btn" id="btn-back" onclick="goBack()" disabled>&#8592; Back</button>
+    <button class="nav-btn primary" id="btn-next" onclick="goNext()" disabled>Next &#8594;</button>
+  </div>
+</div>
+</div>
+
+<!-- RESULTS -->
+<div class="screen" id="screen-results">
+<div class="results-wrap"><div id="results-wrap"></div></div>
+</div>
+
+</div>
+<script>
+const SECTIONS=[
+  {eyebrow:'Section 1 \u00b7 The Core Variable',title:'Uncertainty',callout:'<strong>These questions are the heart of the quiz.</strong> How you respond to the unknown shapes everything else about your time abroad.'},
+  {eyebrow:'Section 2 \u00b7 Social Behavior',title:'How You Connect',callout:null},
+  {eyebrow:'Section 3 \u00b7 Independence',title:'Your Decision Making',callout:null},
+  {eyebrow:'Section 4 \u00b7 Engagement',title:'Seeking Out Difference',callout:null},
+];
+
+const QUESTIONS=[
+  {sec:0,tag:'Scenario',text:'When things are uncertain and you don\'t fully understand what\'s going on in a situation, you\u2026',
+   opts:[{l:'A',t:'Jump in and figure it out as you go',s:[1,0,0,2]},{l:'B',t:'Try, but stay somewhat cautious',s:[1,1,0,1]},{l:'C',t:'Wait until you feel more comfortable',s:[0,1,1,0]},{l:'D',t:'Avoid the situation if possible',s:[0,0,2,0]}]},
+  {sec:0,tag:'Scenario',text:'You\'re in a situation where you might say or do the \u201cwrong\u201d thing. You\u2026',
+   opts:[{l:'A',t:'Go for it anyway and adjust if needed',s:[1,0,0,2]},{l:'B',t:'Try if it feels low-risk',s:[1,1,0,1]},{l:'C',t:'Let someone else take the lead',s:[0,2,1,0]},{l:'D',t:'Avoid speaking or acting altogether',s:[0,0,2,0]}]},
+  {sec:1,tag:'Social Situation',text:'When you\'re in a group where you don\'t know many people, you usually\u2026',
+   opts:[{l:'A',t:'Start conversations with new people',s:[0,0,0,2]},{l:'B',t:'Talk to a few new people but stay near someone familiar',s:[1,1,0,1]},{l:'C',t:'Stick with the one or two people you already know',s:[1,2,0,0]},{l:'D',t:'Keep to yourself',s:[0,0,2,0]}]},
+  {sec:1,tag:'Social Situation',text:'When you feel uncomfortable or out of place in a given environment, you\u2026',
+   opts:[{l:'A',t:'Push yourself to engage anyway',s:[1,0,0,2]},{l:'B',t:'Balance reaching out and leaning on familiar people',s:[1,1,0,0]},{l:'C',t:'Turn to people you already know',s:[0,2,1,0]},{l:'D',t:'Withdraw from the situation',s:[0,0,2,0]}]},
+  {sec:2,tag:'Decision',text:'When you have to make a decision without input from others, you\u2026',
+   opts:[{l:'A',t:'Decide quickly and act on it',s:[2,0,0,2]},{l:'B',t:'Think it through, then decide on your own',s:[2,0,0,1]},{l:'C',t:'Prefer to check with someone first',s:[0,2,1,0]},{l:'D',t:'Avoid deciding unless necessary',s:[0,0,2,0]}]},
+  {sec:2,tag:'Decision',text:'You\'re deciding whether to try something new. You\u2026',
+   opts:[{l:'A',t:'Decide and go for it',s:[2,0,0,2]},{l:'B',t:'Ask for input but ultimately make your own choice',s:[1,1,0,1]},{l:'C',t:'Wait for someone to accompany you',s:[0,2,1,0]},{l:'D',t:'Don\'t act unless someone else initiates',s:[0,1,2,0]}]},
+  {sec:3,tag:'New Environment',text:'You walk into an environment you\'ve never been before. You\u2026',
+   opts:[{l:'A',t:'Introduce yourself or start a conversation',s:[0,0,0,2]},{l:'B',t:'Observe first, then gradually engage',s:[1,1,0,1]},{l:'C',t:'Stay quiet unless someone approaches you',s:[1,2,0,0]},{l:'D',t:'Avoid interaction and leave if possible',s:[0,0,2,0]}]},
+  {sec:3,tag:'Identity & Adaptability',text:'Going abroad often means adopting new social habits or ways of engaging that feel different from home. How do you feel about that possibility?',
+   opts:[{l:'A',t:'I welcome it. Becoming a different version of myself is part of why I\'m going.',s:[0,0,0,2]},{l:'B',t:'I\'m open to it, but I want to stay grounded in who I already am.',s:[1,1,0,1]},{l:'C',t:'I\'m not sure. I haven\'t thought much about how I might change.',s:[1,1,1,0]},{l:'D',t:'It makes me uncomfortable. I\'d rather stay consistent with how I usually am.',s:[0,0,2,0]}]},
+  {sec:3,tag:'Self-Reflection',text:'Which statement feels most like you?',
+   opts:[{l:'A',t:'I actively look for new experiences, even if they\'re uncomfortable',s:[0,0,0,3]},{l:'B',t:'I like new experiences, but only when I feel somewhat prepared',s:[2,1,0,0]},{l:'C',t:'I prefer familiar environments and routines',s:[0,2,1,0]},{l:'D',t:'I avoid situations where I don\'t know what to expect',s:[0,0,3,0]}]},
+];
+
+const TYPES=[
+  {name:'Independent,\nbut In-Group Oriented',
+   tagline:'You\'re confident and capable, but you\'re drawn back to familiar networks for comfort. You have all the tools to resist this tendency. You just need to use them.',
+   risk:'You won\'t push yourself past your existing social circle, even though you have the confidence to do so.',
+   heading:'Recommended Ways to Challenge Yourself Abroad',
+   strategies:[
+     {t:'Spend one day a week without your friends',d:'Not as punishment, but as practice. Discover your full potential and what you are capable of on your own.'},
+     {t:'Initiate one conversation per day with a local',d:'A coffee order counts. A question about directions counts. The habit matters more than the depth. At least at first.'},
+     {t:'Put yourself in spaces where English isn\'t the default',d:'A local market, a neighborhood gym, a community event. Let yourself be the outsider and take it all in.'},
+   ],
+   push:'Expand your circle while retaining your independence.',
+   research:[
+     'Your pattern reflects a central tension in how people navigate unfamiliar environments. There is a pull toward familiar social groups, despite the fact that you have the confidence and ability to move beyond them. This is deeply connected to how identity functions in new settings. You carry your sense of self into every interaction abroad, and familiar groups offer a way to maintain that sense of self without having to renegotiate it.',
+     'What holds you back isn\'t capability. It\'s your tolerance for social uncertainty. Research on how individuals communicate in unfamiliar environments shows that people avoid unpredictable interactions not because they can\'t handle them, but because familiar relationships reduce ambiguity and feel safer. For you, growth depends less on building new skills and more on your willingness to take a risk and enter unfamiliar social situations.',
+   ]},
+  {name:'Interdependent &\nIn-Group Anchored',
+   tagline:'You thrive in connection and lean on your familiar people to navigate the unknown. You find strength in your in-group, but it can quickly become a buffer between you and potential new groups.',
+   risk:'You stay socially comfortable, but culturally limited. Your experience abroad can mirror home if you let it.',
+   heading:'Recommended Ways to Challenge Yourself Abroad',
+   strategies:[
+     {t:'Use your group as a base, not a boundary',d:'Return to them for comfort, but challenge yourself to push outward first. They will be there when you get back.'},
+     {t:'Talk to one new person every time you go out',d:'It doesn\'t have to be deep. Just one exchange outside of your usual circle. You never know where it could lead.'},
+     {t:'Build one recurring local interaction',d:'A caf\u00e9 you return to, a gym you join, a fruit stand at the farmer\'s market. Repetition builds real connection and deeper cultural immersion.'},
+   ],
+   push:'Expand your circle and meet new people.',
+   research:[
+     'Your tendency to rely on close relationships in unfamiliar settings is one of the most documented responses to being abroad. When everything else feels uncertain. The language, the norms, the social cues. Turning to familiar people is a natural way to reduce that uncertainty and maintain a stable sense of who you are.',
+     'The challenge is that while in-group connections provide emotional stability, they can also limit your exposure to difference when they become a barrier rather than a foundation. Research on intercultural engagement shows that meaningful cultural understanding develops through sustained contact with people outside of your existing social circle. The students who grow the most abroad are those who use their close relationships for support, while still choosing to step into new, uncomfortable social territory.',
+   ]},
+  {name:'Developing\nIndependence',
+   tagline:'You may feel uncertain at first. That\'s a starting marker, not a flaw. You have substantial capacity for growth, and going abroad is the perfect environment to unlock it.',
+   risk:'Initial fear can limit your early experiences. The first moments set the tone and hesitation can compound.',
+   heading:'Recommended Ways to Challenge Yourself Abroad',
+   strategies:[
+     {t:'Do one thing alone every day',d:'Walk somewhere new, eat at a caf\u00e9 by yourself, explore a neighborhood without a plan. Small acts of independence accumulate.'},
+     {t:'Don\'t wait until you feel ready. Act first',d:'The feeling of readiness usually doesn\'t come \u201cin time,\u201d especially while abroad. Challenge yourself to move anyway.'},
+     {t:'Say yes before you can overthink it',d:'You\'ll talk yourself out of things. The override is to commit before your brain catches up. Do it for your own good.'},
+   ],
+   push:'Trust yourself and lean into the discomfort of abroad.',
+   research:[
+     'Your experience emphasizes something important: uncertainty tolerance is not fixed. The discomfort you feel in unfamiliar situations is not a permanent trait. It\'s a response shaped by your early socialization and prior experiences. Moments of discomfort, miscommunication, and cultural difference are not obstacles to growth; when engaged with rather than avoided, they are the primary drivers of it.',
+     'Studies consistently show that students who move through uncertainty, rather than waiting for it to pass, develop greater adaptability, confidence, and cultural understanding over time. Your trajectory is defined by whether you choose to engage with uncertainty when you are faced with it. That choice, repeated often, is what transforms an abroad experience from something that just happens to you into something that fundamentally changes you.',
+   ]},
+  {name:'Independent &\nOut-Group Engaged',
+   tagline:'You actively seek new experiences and approach uncertainty with confidence. Now make sure it actually lands.',
+   risk:'Burnout or surface-level overextension. Collecting experiences without truly absorbing them.',
+   heading:'Recommended Ways to Challenge Yourself Abroad',
+   strategies:[
+     {t:'Focus on depth over breadth',d:'Pick one or two people and work to develop a deep and genuine connection with them. Five surface-level friendships is not the same as one true one.'},
+     {t:'Reflect, don\'t just experience',d:'Journal, voice memo, whatever works. Your experiences best become yours when you process them.'},
+     {t:'Stay present, not just busy',d:'Are you doing things because you want to, or because you can\'t slow down? Sit in one place long enough to notice it.'},
+   ],
+   push:'Turn activity into meaning.',
+   research:[
+     'Your high tolerance for uncertainty is one of the strongest predictors of intercultural engagement. Rather than avoiding ambiguity, you reduce it through interaction. Seeking out new people and environments rather than waiting for them to feel safe. This approach is directly linked to deeper cultural understanding and personal growth in research on study abroad outcomes.',
+     'Your main challenge isn\'t access to experience. It\'s what you take away from it. Research on intercultural development shows that reflection produces much stronger growth than exposure alone. Students who engage widely but rarely slow down often return from abroad with vivid memories, but without the deeper shifts in perspective that make study abroad genuinely formative. The challenge for you is to slow down and make moments intentional.',
+   ]},
+];
+
+let answers=new Array(QUESTIONS.length).fill(null),currentQ=0;
+
+function startQuiz(){
+  document.getElementById('screen-intro').classList.remove('active');
+  document.getElementById('screen-quiz').classList.add('active');
+  renderQ();
+}
+
+function renderQ(){
+  const q=QUESTIONS[currentQ],sec=SECTIONS[q.sec],total=QUESTIONS.length;
+  document.getElementById('q-eyebrow').textContent=sec.eyebrow;
+  document.getElementById('q-section-title').textContent=sec.title;
+  document.getElementById('prog-fill').style.width=(currentQ/total*100)+'%';
+  document.getElementById('prog-label').textContent=(currentQ+1)+' / '+total;
+  const isFirst=currentQ===0||QUESTIONS[currentQ-1].sec!==q.sec;
+  document.getElementById('callout-wrap').innerHTML=(isFirst&&sec.callout)?'<div class="section-callout"><p>'+sec.callout+'</p></div>':'';
+  let html='<span class="q-tag">'+q.tag+'</span><p class="q-text">'+q.text+'</p><div class="opts">';
+  // Shuffle options but preserve original index for scoring
+  const shuffled = q.opts.map((o,i)=>({...o,origIdx:i})).sort(()=>Math.random()-0.5);
+  const letters = ['A','B','C','D'];
+  shuffled.forEach((o,i)=>{
+    const isSelected = answers[currentQ]===o.origIdx;
+    html+='<button class="opt'+(isSelected?' sel':'')+'" data-orig="'+o.origIdx+'" onclick="pick(this)" type="button"><span class="opt-let">'+letters[i]+'</span><span class="opt-txt">'+o.t+'</span></button>';
+  });
+  html+='</div>';
+  document.getElementById('q-wrap').innerHTML=html;
+  document.getElementById('btn-back').disabled=currentQ===0;
+  document.getElementById('btn-next').disabled=answers[currentQ]===null;
+  document.getElementById('btn-next').textContent=currentQ===total-1?'See My Results \u2192':'Next \u2192';
+}
+
+function pick(el){
+  const idx=parseInt(el.dataset.orig);
+  answers[currentQ]=idx;
+  document.querySelectorAll('.opt').forEach(b=>b.classList.remove('sel'));
+  el.classList.add('sel');
+  document.getElementById('btn-next').disabled=false;
+}
+
+function goNext(){
+  if(answers[currentQ]===null)return;
+  if(currentQ<QUESTIONS.length-1){currentQ++;renderQ();}
+  else showResults();
+}
+
+function goBack(){if(currentQ>0){currentQ--;renderQ();}}
+
+function getType(){
+  const t=[0,0,0,0];
+  answers.forEach((a,qi)=>{if(a!==null)QUESTIONS[qi].opts[a].s.forEach((v,ti)=>t[ti]+=v);});
+  return t.indexOf(Math.max(...t));
+}
+
+function getPcts(){
+  const sums=[0,0,0,0],counts=[0,0,0,0];
+  answers.forEach((a,qi)=>{if(a===null)return;const s=QUESTIONS[qi].sec;sums[s]+=(3-a);counts[s]++;});
+  return sums.map((s,i)=>counts[i]?Math.round((s/(counts[i]*3))*100):50);
+}
+
+function showResults(){
+  document.getElementById('screen-quiz').classList.remove('active');
+  document.getElementById('screen-results').classList.add('active');
+  const type=TYPES[getType()],pcts=getPcts();
+  const scoreItems=[{label:'Uncertainty Tolerance',pct:pcts[0]},{label:'Social Openness',pct:pcts[1]},{label:'Independence',pct:pcts[2]},{label:'Engagement',pct:pcts[3]}];
+  let html='<div class="usd-bar"><div class="usd-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="#75bee9" stroke-width="1.5"/><path d="M10 5v5.5l3.5 2" stroke="#75bee9" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="usd-wordmark">University of San Diego<small>International Center &middot; Study Abroad</small></div></div>';
+  html+='<div class="res-header"><span class="res-eyebrow">Your Traveler Type</span><div class="res-type">'+type.name.replace('\n','<br>')+'</div><p class="res-tagline">'+type.tagline+'</p></div>';
+  html+='<div class="type-note"><p>Your result reflects how you typically respond to uncertainty, connection, and decision-making and where growth is most likely to happen. There is no \u201cbest\u201d type. Recognizing your patterns of adaptation can help you intentionally challenge them, in order to get the most fulfilling and well-rounded study abroad experience.</p></div>';
+  html+='<div class="scores-grid">';
+  scoreItems.forEach(s=>{html+='<div class="sc-cell"><span class="sc-label">'+s.label+'</span><div class="sc-track"><div class="sc-fill" style="width:0%" data-pct="'+s.pct+'"></div></div><div class="sc-val">'+s.pct+'<sup>%</sup></div></div>';});
+  html+='</div>';
+  html+='<div class="growth-block"><span class="growth-lbl">Your Growth Opportunity</span><p class="growth-txt">'+type.risk+'</p></div>';
+  html+='<span class="block-lbl">'+type.heading+'</span>';
+  type.strategies.forEach((s,i)=>{html+='<div class="strat-row"><div class="strat-n">0'+(i+1)+'</div><div><div class="strat-title">'+s.t+'</div><div class="strat-desc">'+s.d+'</div></div></div>';});
+  html+='<div class="core-effort"><span class="ce-lbl">Core Effort</span><div class="ce-text">'+type.push+'</div></div>';
+  html+='<div class="research-block"><span class="rb-lbl">What the Research Says</span>';
+  type.research.forEach(p=>{html+='<p class="rb-p">'+p+'</p>';});
+  html+='</div>';
+  html+='<div class="citations-block"><span class="cit-lbl">Research References</span><p class="cit-p">Berger, C. R., &amp; Calabrese, R. J. (1975). Some explorations in initial interaction and beyond: Toward a developmental theory of interpersonal communication. <em>Human Communication Research, 1</em>(2), 99&ndash;112.</p><p class="cit-p">McGregor, R., &amp; Jackson, J. (2012). Sites of struggle and becoming: Language and intercultural learning during study abroad. In J. Jackson (Ed.), <em>The Routledge Handbook of Language and Intercultural Communication</em> (pp. 345&ndash;358). Routledge.</p><p class="cit-p">Ting-Toomey, S. (1999). <em>Communicating across cultures.</em> Guilford Press.</p><p class="cit-p">Waßmuth, B., &amp; Edinger-Schons, L. M. (2018). Student exchange experiences and intercultural communication competence. <em>Journal of International Education in Business, 11</em>(1), 43&ndash;63.</p></div>';
+html+='<div class="res-footer"><p>This assessment is a starting point for reflection, not a definitive measure.<br>Use it as a lens for the experience ahead.</p><button class="retry-btn" onclick="restartQuiz()">&#8635; Retake the Quiz</button></div>';
+  document.getElementById('results-wrap').innerHTML=html;
+  setTimeout(()=>{document.querySelectorAll('.sc-fill').forEach(el=>{el.style.transition='width 1.1s cubic-bezier(.4,0,.2,1)';el.style.width=el.dataset.pct+'%';});},100);
+  window.scrollTo(0,0);
+}
+
+function restartQuiz(){
+  answers=new Array(QUESTIONS.length).fill(null);currentQ=0;
+  document.getElementById('screen-results').classList.remove('active');
+  document.getElementById('screen-intro').classList.add('active');
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
